@@ -1,8 +1,7 @@
-import React from "react"
-import { Helmet } from "react-helmet"
+import React from "react";
+import { Helmet } from "react-helmet";
 
 const CreatePost = () => {
-
   return (
     <>
       <Helmet>
@@ -12,7 +11,7 @@ const CreatePost = () => {
         <h1>Create a Post</h1>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default CreatePost
+export default CreatePost;

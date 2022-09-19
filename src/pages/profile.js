@@ -1,9 +1,7 @@
-import React from "react"
-import { Helmet } from "react-helmet"
+import React from "react";
+import { Helmet } from "react-helmet";
 
 const Profile = () => {
-
-
   return (
     <>
       <Helmet>
@@ -13,7 +11,7 @@ const Profile = () => {
         <h1>Profile</h1>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default Profile
+export default Profile;
