@@ -1,5 +1,5 @@
-import React from "react";
-import { Nav, Logo, NavLink, NavLinks, Button } from "./styles";
+import React from "react"
+import { Nav, Logo, NavLink, NavLinks } from "./styles"
 
 const Navbar = () => {
   return (
@@ -8,10 +8,9 @@ const Navbar = () => {
       <NavLinks>
         <NavLink to="/createPost">Create Post</NavLink>
         <NavLink to="/profile">Profile</NavLink>
-        <Button>Logout</Button>
       </NavLinks>
     </Nav>
-  );
-};
+  )
+}
 
-export default Navbar;
+export default Navbar
