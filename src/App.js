@@ -1,6 +1,8 @@
 import "./App.css"
 import { Routes, Route } from "react-router-dom"
 import Navbar from "./components/navbar/navbar"
+import { ToastContainer } from "react-toastify"
+import "react-toastify/dist/ReactToastify.css"
 
 import Home from "./pages/home/home"
 import CreatePost from "./pages/createPost/createPost"
@@ -16,6 +18,17 @@ function App() {
         <Route path="createPost" element={<CreatePost />} />
         <Route path="profile" element={<Profile />} />
       </Routes>
+      <ToastContainer
+        position="bottom-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />{" "}
     </div>
   )
 }

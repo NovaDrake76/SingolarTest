@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { Helmet } from "react-helmet"
 import {
   Container,
@@ -54,14 +54,19 @@ const CreatePost = () => {
       })
         .then((response) => response.json())
         .then((json) => setLog(json))
+
       setSuccess(true)
 
       setTimeout(() => {
         setSuccess(false)
-      }, 3000)
+      }, 1000)
     }
     setSubmitted(true)
   }
+
+  useEffect(() => {
+    console.log(log)
+  }, [log])
 
   return (
     <Container>
