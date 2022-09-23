@@ -1,4 +1,4 @@
-import styled from "styled-components"
+import styled from "styled-components";
 
 export const Container = styled.div`
   display: flex;
@@ -6,9 +6,8 @@ export const Container = styled.div`
   align-items: center;
   justify-content: center;
   padding: 0 20px;
-  max-width: 1280px;
   gap: 5px;
-`
+`;
 
 export const Form = styled.form`
   display: flex;
@@ -21,13 +20,13 @@ export const Form = styled.form`
   padding: 20px;
   width: 400px;
   gap: 20px;
-`
+`;
 
 export const Label = styled.label`
   font-size: 1.5rem;
   font-weight: 400;
   color: #333;
-`
+`;
 
 export const InputContainer = styled.div`
   display: flex;
@@ -37,7 +36,7 @@ export const InputContainer = styled.div`
   width: 100%;
   gap: 10px;
   transition: all 0.2s ease-in-out;
-`
+`;
 
 export const Input = styled.input`
   width: 95%;
@@ -50,7 +49,7 @@ export const Input = styled.input`
   disabled: {
     background-color: #ccc;
   }
-`
+`;
 
 export const TextArea = styled.textarea`
   width: 95%;
@@ -63,10 +62,18 @@ export const TextArea = styled.textarea`
   disabled: {
     background-color: #ccc;
   }
-`
+`;
+
+export const ButtonsContainer = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
+  gap: 10px;
+`;
 
 export const Button = styled.button`
-  width: 100px;
+  width: 150px;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -79,31 +86,10 @@ export const Button = styled.button`
     background-color: red;
     cursor: not-allowed;
   }
-`
-
-export const SuccessMessage = styled.div`
-  color: green;
-  font-size: 1rem;
-  font-weight: 400;
-  padding: 10px;
-`
+`;
 
 export const ErrorMessage = styled.div`
   color: red;
   font-size: 0.8rem;
   font-weight: 400;
-`
-
-export const LogArea = styled.div`
-  width: 350px;
-  height: 100px;
-  margin-top: 15px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 1rem;
-  font-weight: 400;
-  color: gray;
-  padding: 10px;
-  background-color: #fff;
-  overflow: scroll;
-`
+`;

@@ -1,21 +1,28 @@
-import "./App.css"
-import { Routes, Route } from "react-router-dom"
-import Navbar from "./components/navbar/navbar"
-import { ToastContainer } from "react-toastify"
-import "react-toastify/dist/ReactToastify.css"
+import React, { useState } from "react";
+import "./App.css";
+import { Routes, Route } from "react-router-dom";
+import Navbar from "./components/navbar/navbar";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-import Home from "./pages/home/home"
-import CreatePost from "./pages/createPost/createPost"
-import Profile from "./pages/profile"
+import Home from "./pages/home/home";
+import ChangePost from "./pages/changePost/changePost";
+import Profile from "./pages/profile";
 
 function App() {
+  const [postInfo, setPostInfo] = useState();
+
   return (
     <div className="App">
       <Navbar />
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Home setPostInfo={setPostInfo} />} />
 
-        <Route path="createPost" element={<CreatePost />} />
+        <Route path="createPost" element={<ChangePost toEdit={false} />} />
+        <Route
+          path="editPost"
+          element={<ChangePost toEdit={true} postInfo={postInfo} />}
+        />
         <Route path="profile" element={<Profile />} />
       </Routes>
       <ToastContainer
@@ -28,9 +35,9 @@ function App() {
         pauseOnFocusLoss
         draggable
         pauseOnHover
-      />{" "}
+      />
     </div>
-  )
+  );
 }
 
-export default App
+export default App;

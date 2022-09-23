@@ -1,6 +1,5 @@
-import styled from "styled-components"
+import styled from "styled-components";
 
-//modal
 export const ModalContainer = styled.div`
   position: fixed;
   top: 0;
@@ -12,7 +11,7 @@ export const ModalContainer = styled.div`
   justify-content: center;
   align-items: center;
   z-index: 100;
-`
+`;
 
 export const ModalContent = styled.div`
   width: 400px;
@@ -24,25 +23,25 @@ export const ModalContent = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 20px;
-`
+`;
 
 export const ModalTitle = styled.h2`
   font-size: 1.5rem;
   font-weight: 400;
   color: #333;
-`
+`;
 
 export const ModalText = styled.p`
   font-size: 1rem;
   font-weight: 400;
   color: #333;
-`
+`;
 
 export const ModalButtons = styled.div`
   display: flex;
   width: 100%;
   gap: 20px;
-`
+`;
 
 export const ModalButton = styled.button`
   width: 100%;
@@ -57,12 +56,12 @@ export const ModalButton = styled.button`
   &:hover {
     opacity: 0.8;
   }
-`
+`;
 
 export const ModalButtonCancel = styled(ModalButton)`
   background-color: #333;
-`
+`;
 
 export const ModalButtonDelete = styled(ModalButton)`
   background-color: #f00;
-`
+`;
