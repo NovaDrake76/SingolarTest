@@ -7,6 +7,7 @@ export const Container = styled.div`
   justify-content: center;
   padding: 0 20px;
   max-width: 1280px;
+  gap: 5px;
 `
 
 export const Form = styled.form`
@@ -35,6 +36,7 @@ export const InputContainer = styled.div`
   justify-content: center;
   width: 100%;
   gap: 10px;
+  transition: all 0.2s ease-in-out;
 `
 
 export const Input = styled.input`
@@ -45,6 +47,9 @@ export const Input = styled.input`
   font-size: 1rem;
   font-weight: 400;
   color: #333;
+  disabled: {
+    background-color: #ccc;
+  }
 `
 
 export const TextArea = styled.textarea`
@@ -55,6 +60,9 @@ export const TextArea = styled.textarea`
   font-size: 1rem;
   font-weight: 400;
   color: #333;
+  disabled: {
+    background-color: #ccc;
+  }
 `
 
 export const Button = styled.button`
@@ -67,4 +75,35 @@ export const Button = styled.button`
   color: #333;
   background-color: #fff;
   cursor: pointer;
+  disabled: {
+    background-color: red;
+    cursor: not-allowed;
+  }
+`
+
+export const SuccessMessage = styled.div`
+  color: green;
+  font-size: 1rem;
+  font-weight: 400;
+  padding: 10px;
+`
+
+export const ErrorMessage = styled.div`
+  color: red;
+  font-size: 0.8rem;
+  font-weight: 400;
+`
+
+export const LogArea = styled.div`
+  width: 350px;
+  height: 100px;
+  margin-top: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-weight: 400;
+  color: gray;
+  padding: 10px;
+  background-color: #fff;
+  overflow: scroll;
 `

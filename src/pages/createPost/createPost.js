@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React, { useState } from "react"
 import { Helmet } from "react-helmet"
 import {
   Container,
@@ -8,6 +8,9 @@ import {
   Input,
   TextArea,
   Button,
+  SuccessMessage,
+  ErrorMessage,
+  LogArea,
 } from "./styles"
 
 const CreatePost = () => {
@@ -17,6 +20,7 @@ const CreatePost = () => {
   })
   const [submitted, setSubmitted] = useState(false)
   const [success, setSuccess] = useState(false)
+  const [log, setLog] = useState("")
 
   const handleTitleChange = (event) => {
     event.persist()
@@ -34,8 +38,28 @@ const CreatePost = () => {
     }))
   }
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
+  const handleSubmit = (event) => {
+    event.preventDefault()
+    if (values.title && values.content) {
+      fetch("https://jsonplaceholder.typicode.com/posts", {
+        method: "POST",
+        body: JSON.stringify({
+          title: values.title,
+          body: values.content,
+          userId: 1,
+        }),
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+        },
+      })
+        .then((response) => response.json())
+        .then((json) => setLog(json))
+      setSuccess(true)
+
+      setTimeout(() => {
+        setSuccess(false)
+      }, 3000)
+    }
     setSubmitted(true)
   }
 
@@ -45,7 +69,6 @@ const CreatePost = () => {
         <title>Create Post</title>
       </Helmet>
       <h1>Create Post</h1>
-      {success && <div className="success-message">Success! Post created!</div>}
 
       <Form onSubmit={handleSubmit}>
         <InputContainer>
@@ -54,12 +77,15 @@ const CreatePost = () => {
             id="title"
             type="text"
             placeholder="Title"
+            disabled={success}
             name="title"
             value={values.title}
             onChange={handleTitleChange}
           />
-          {submitted && !values.firstName && (
-            <span id="first-name-error">Please enter a first name</span>
+          {submitted && !values.title && (
+            <ErrorMessage id="first-name-error">
+              Please enter a first name
+            </ErrorMessage>
           )}
         </InputContainer>
         <InputContainer>
@@ -69,17 +95,26 @@ const CreatePost = () => {
             type="text"
             placeholder="Post Content"
             name="content"
+            disabled={success}
             value={values.content}
             onChange={handleContentChange}
           />
-          {submitted && !values.firstName && (
-            <span id="first-name-error">Please enter a first name</span>
+          {submitted && !values.content && (
+            <ErrorMessage id="first-name-error">
+              Please enter the content of the post
+            </ErrorMessage>
           )}
         </InputContainer>
-        <Button type="submit" value="Submit">
+        <Button type="submit" value="Submit" disabled={success}>
           Submit
         </Button>
       </Form>
+      {success && (
+        <SuccessMessage className="success-message">
+          Success! Post created!
+        </SuccessMessage>
+      )}
+      {log !== "" && <LogArea>{JSON.stringify(log)}</LogArea>}
     </Container>
   )
 }
