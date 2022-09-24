@@ -26,7 +26,7 @@ const ChangePost = ({ toEdit, postInfo }) => {
   const [toastText, setToastText] = useState("")
 
   const notify = () =>
-    toast.success(`Post ${toastText}! - Check the console"`, {
+    toast.success(`Post ${toastText}! - Check the console`, {
       position: "bottom-right",
       autoClose: 3000,
       hideProgressBar: true,
@@ -44,9 +44,11 @@ const ChangePost = ({ toEdit, postInfo }) => {
 
   useEffect(() => {
     window.onbeforeunload = function () {
-      return true
+      if (success === false) {
+        return true
+      }
     }
-  }, [])
+  }, [success])
 
   const handleTitleChange = (event) => {
     event.persist()
@@ -101,7 +103,7 @@ const ChangePost = ({ toEdit, postInfo }) => {
       notify()
 
       setTimeout(() => {
-        setSuccess(false)
+        window.location.href = "/"
       }, 1000)
     }
     setSubmitted(true)

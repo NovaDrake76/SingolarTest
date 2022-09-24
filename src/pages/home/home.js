@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
-import { Helmet } from "react-helmet";
-import { FiEdit } from "react-icons/fi";
-import { RiDeleteBin5Line } from "react-icons/ri";
-import DeleteModal from "../../components/deleteModal/modal";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react"
+import { Helmet } from "react-helmet"
+import { FiEdit } from "react-icons/fi"
+import { RiDeleteBin5Line } from "react-icons/ri"
+import DeleteModal from "../../components/deleteModal/modal"
+import { Link } from "react-router-dom"
 
 import {
   Container,
@@ -16,38 +16,40 @@ import {
   PostHeader,
   IconContainer,
   PageContent,
-} from "./styles";
+  SeeMore,
+  PostBottom,
+} from "./styles"
 
 const Home = ({ setPostInfo }) => {
-  const [loading, setLoading] = useState(true);
-  const [posts, setPosts] = useState([]);
-  const [users, setUsers] = useState([]);
-  const [modal, setModal] = useState(false);
-  const [modalAux, setModalAux] = useState(false);
-  const [post, setPost] = useState({});
+  const [loading, setLoading] = useState(true)
+  const [posts, setPosts] = useState([])
+  const [users, setUsers] = useState([])
+  const [modal, setModal] = useState(false)
+  const [modalAux, setModalAux] = useState(false)
+  const [post, setPost] = useState({})
 
   useEffect(() => {
     fetch("https://jsonplaceholder.typicode.com/posts")
       .then((res) => res.json())
       .then((data) => setPosts(data))
-      .then(() => setLoading(false));
-  }, []);
+      .then(() => setLoading(false))
+  }, [])
 
   useEffect(() => {
     fetch("https://jsonplaceholder.typicode.com/users")
       .then((res) => res.json())
-      .then((data) => setUsers(data));
-  }, []);
+      .then((data) => setUsers(data))
+  }, [])
 
   const openModal = (post) => {
-    setModal(true);
-    setPost(post);
-    setModalAux(!modalAux);
-  };
+    setModal(true)
+    setPost(post)
+    setModalAux(!modalAux)
+  }
 
-  const editPost = (post) => {
-    setPostInfo(post);
-  };
+  const postInfoAux = (post) => {
+    setPostInfo(post)
+  }
 
   return (
     <>
@@ -68,7 +70,7 @@ const Home = ({ setPostInfo }) => {
                 <Post key={post.id}>
                   <PostHeader>
                     <Link to={`editPost`}>
-                      <IconContainer onClick={() => editPost(post)}>
+                      <IconContainer onClick={() => postInfoAux(post)}>
                         <FiEdit />
                       </IconContainer>
                     </Link>
@@ -78,11 +80,16 @@ const Home = ({ setPostInfo }) => {
                   </PostHeader>
                   <PostTitle>{post.title}</PostTitle>
                   <PostText>{post.body}</PostText>
-                  <PostAuthor>
-                    {users.map((user) =>
-                      user.id === post.userId ? user.name : null
-                    )}
-                  </PostAuthor>
+                  <PostBottom>
+                    <SeeMore to={`post`} onClick={() => postInfoAux(post)}>
+                      See more
+                    </SeeMore>
+                    <PostAuthor>
+                      {users.map((user) =>
+                        user.id === post.userId ? user.name : null
+                      )}
+                    </PostAuthor>
+                  </PostBottom>
                 </Post>
               ))}
             </Posts>
@@ -90,7 +97,7 @@ const Home = ({ setPostInfo }) => {
         </PageContent>
       </Container>
     </>
-  );
-};
+  )
+}
 
-export default Home;
+export default Home

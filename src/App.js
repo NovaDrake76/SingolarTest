@@ -8,6 +8,7 @@ import "react-toastify/dist/ReactToastify.css"
 import Home from "./pages/home/home"
 import ChangePost from "./pages/changePost/changePost"
 import Profile from "./pages/profile"
+import Post from "./pages/post/post"
 
 function App() {
   const [postInfo, setPostInfo] = useState()
@@ -24,6 +25,7 @@ function App() {
           element={<ChangePost toEdit={true} postInfo={postInfo} />}
         />
         <Route path="profile" element={<Profile />} />
+        <Route path="post" element={<Post postInfo={postInfo} />} />
       </Routes>
       <ToastContainer
         position="bottom-right"
