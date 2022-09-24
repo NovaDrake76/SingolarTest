@@ -74,7 +74,6 @@ export const PostTitle = styled.h2`
   color: #333;
   max-height: 70px;
 
-  //put a line break if the text is too long
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;

@@ -4,26 +4,53 @@ import { Helmet } from "react-helmet"
 import {
   Container,
   PostBody,
-  Comment,
-  CommentAuthor,
-  CommentBody,
-  CommentTitle,
-  CommentsContainer,
-  PostAuthorInfo,
   PostBottom,
+  SecondaryTitle,
   PostText,
   PostTitle,
-  PostAuthorInfoContent,
+  AuthorInfo,
+  AuthorText,
+  RelatedPostsContainer,
+  RelatedPosts,
+  RelatedPost,
+  RelatedPostTitle,
+  CommentsContainer,
+  CommentsContainerContent,
+  Comment,
+  CommentBody,
+  CommentEmail,
+  CommentName,
+  CommentTop,
 } from "./style"
 
-const Post = ({ postInfo }) => {
+const Post = ({ postInfo, setPostInfo }) => {
   const [authorInfo, setAuthorInfo] = React.useState({})
+  const [relatedPosts, setRelatedPosts] = React.useState([])
+  const [comments, setComments] = React.useState([])
+
+  const postInfoAux = (post) => {
+    setPostInfo(post)
+  }
+
+  if (!postInfo) {
+    window.location.href = "/"
+  }
 
   useEffect(() => {
-    fetch("https://jsonplaceholder.typicode.com/users/1")
+    fetch(`https://jsonplaceholder.typicode.com/users/${postInfo.userId}`)
       .then((res) => res.json())
       .then((data) => setAuthorInfo(data))
-  }, [])
+
+    fetch(
+      `https://jsonplaceholder.typicode.com/posts?userId=${postInfo.userId}`
+    )
+      .then((response) => response.json())
+      .then((data) => setRelatedPosts(data))
+
+    fetch(`https://jsonplaceholder.typicode.com/posts/${postInfo.id}/comments`)
+      .then((response) => response.json())
+      .then((data) => setComments(data))
+  }, [postInfo])
 
   useEffect(() => {
     console.log(authorInfo)
@@ -40,34 +67,43 @@ const Post = ({ postInfo }) => {
             <PostTitle>{postInfo.title}</PostTitle>
             <PostText>{postInfo.body}</PostText>
             <PostBottom>
-              {authorInfo.name && (
-                <PostAuthorInfo>
-                  <PostAuthorInfoContent>
-                    {authorInfo.name}
-                    {authorInfo.username}
-                    {authorInfo.email}
-                    {authorInfo.address.street}
-                    {authorInfo.address.suite}
-                    {authorInfo.address.city}
-                    {authorInfo.address.zipcode}
-                    {authorInfo.address.geo.lat}
-                    {authorInfo.address.geo.lng}
-                    {authorInfo.phone}
-                    {authorInfo.website}
-                    {authorInfo.company.name}
-                    {authorInfo.company.catchPhrase}
-                    {authorInfo.company.bs}
-                  </PostAuthorInfoContent>
-                </PostAuthorInfo>
-              )}
+              <SecondaryTitle>About the author:</SecondaryTitle>
+              <AuthorInfo>
+                <AuthorText>Name: {authorInfo.name}</AuthorText>
+                <AuthorText>Username: {authorInfo.username}</AuthorText>
+                <AuthorText>Email: {authorInfo.email}</AuthorText>
+                <AuthorText>Phone: {authorInfo.phone}</AuthorText>
+                <AuthorText>Website: {authorInfo.website}</AuthorText>
+              </AuthorInfo>
             </PostBottom>
+            <RelatedPostsContainer>
+              <SecondaryTitle>Posts from this Author:</SecondaryTitle>
 
+              <RelatedPosts>
+                {relatedPosts.map((post) => (
+                  <RelatedPost
+                    key={post.id}
+                    to={``}
+                    onClick={() => postInfoAux(post)}
+                  >
+                    <RelatedPostTitle>{post.title}</RelatedPostTitle>
+                  </RelatedPost>
+                ))}
+              </RelatedPosts>
+            </RelatedPostsContainer>
             <CommentsContainer>
-              <Comment>
-                <CommentTitle>Comment Title</CommentTitle>
-                <CommentBody>Comment Body</CommentBody>
-                <CommentAuthor>Author</CommentAuthor>
-              </Comment>
+              <SecondaryTitle>Comments:</SecondaryTitle>
+              <CommentsContainerContent>
+                {comments.map((comment) => (
+                  <Comment key={comment.id}>
+                    <CommentTop>
+                      <CommentName>{comment.name}</CommentName>
+                      <CommentEmail>{comment.email}</CommentEmail>
+                    </CommentTop>
+                    <CommentBody>{comment.body}</CommentBody>
+                  </Comment>
+                ))}
+              </CommentsContainerContent>
             </CommentsContainer>
           </PostBody>
         )}

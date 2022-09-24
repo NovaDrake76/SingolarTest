@@ -25,7 +25,10 @@ function App() {
           element={<ChangePost toEdit={true} postInfo={postInfo} />}
         />
         <Route path="profile" element={<Profile />} />
-        <Route path="post" element={<Post postInfo={postInfo} />} />
+        <Route
+          path="post"
+          element={<Post postInfo={postInfo} setPostInfo={setPostInfo} />}
+        />
       </Routes>
       <ToastContainer
         position="bottom-right"
