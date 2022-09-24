@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from "styled-components"
 
 export const Container = styled.div`
   display: flex;
@@ -7,7 +7,7 @@ export const Container = styled.div`
   justify-content: center;
   padding: 0 20px;
   gap: 5px;
-`;
+`
 
 export const Form = styled.form`
   display: flex;
@@ -20,13 +20,13 @@ export const Form = styled.form`
   padding: 20px;
   width: 400px;
   gap: 20px;
-`;
+`
 
 export const Label = styled.label`
   font-size: 1.5rem;
   font-weight: 400;
   color: #333;
-`;
+`
 
 export const InputContainer = styled.div`
   display: flex;
@@ -36,7 +36,7 @@ export const InputContainer = styled.div`
   width: 100%;
   gap: 10px;
   transition: all 0.2s ease-in-out;
-`;
+`
 
 export const Input = styled.input`
   width: 95%;
@@ -49,10 +49,11 @@ export const Input = styled.input`
   disabled: {
     background-color: #ccc;
   }
-`;
+`
 
 export const TextArea = styled.textarea`
   width: 95%;
+  height: 125px;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -62,7 +63,7 @@ export const TextArea = styled.textarea`
   disabled: {
     background-color: #ccc;
   }
-`;
+`
 
 export const ButtonsContainer = styled.div`
   display: flex;
@@ -70,7 +71,7 @@ export const ButtonsContainer = styled.div`
   align-items: center;
   width: 100%;
   gap: 10px;
-`;
+`
 
 export const Button = styled.button`
   width: 150px;
@@ -86,10 +87,10 @@ export const Button = styled.button`
     background-color: red;
     cursor: not-allowed;
   }
-`;
+`
 
 export const ErrorMessage = styled.div`
   color: red;
   font-size: 0.8rem;
   font-weight: 400;
-`;
+`

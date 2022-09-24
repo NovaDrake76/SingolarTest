@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
-import { Helmet } from "react-helmet";
-import { Slide, toast } from "react-toastify";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react"
+import { Helmet } from "react-helmet"
+import { Slide, toast } from "react-toastify"
+import { Link } from "react-router-dom"
 
 import {
   Container,
@@ -13,19 +13,20 @@ import {
   Button,
   ErrorMessage,
   ButtonsContainer,
-} from "./styles";
+} from "./styles"
 
 const ChangePost = ({ toEdit, postInfo }) => {
   const [values, setValues] = useState({
     title: "",
     content: "",
-  });
-  const [submitted, setSubmitted] = useState(false);
-  const [success, setSuccess] = useState(false);
-  const [log, setLog] = useState("");
+  })
+  const [submitted, setSubmitted] = useState(false)
+  const [success, setSuccess] = useState(false)
+  const [log, setLog] = useState("")
+  const [toastText, setToastText] = useState("")
 
   const notify = () =>
-    toast.success("Post created! - Check the console", {
+    toast.success(`Post ${toastText}! - Check the console"`, {
       position: "bottom-right",
       autoClose: 3000,
       hideProgressBar: true,
@@ -35,68 +36,102 @@ const ChangePost = ({ toEdit, postInfo }) => {
       progress: undefined,
       theme: "dark",
       transition: Slide,
-    });
+    })
+
+  if (toEdit && !postInfo) {
+    window.location.href = "/"
+  }
+
+  useEffect(() => {
+    window.onbeforeunload = function () {
+      return true
+    }
+  }, [])
 
   const handleTitleChange = (event) => {
-    event.persist();
+    event.persist()
     setValues((values) => ({
       ...values,
       title: event.target.value,
-    }));
-  };
+    }))
+  }
 
   const handleContentChange = (event) => {
-    event.persist();
+    event.persist()
     setValues((values) => ({
       ...values,
       content: event.target.value,
-    }));
-  };
+    }))
+  }
 
   const handleSubmit = (event) => {
-    event.preventDefault();
+    event.preventDefault()
     if (values.title && values.content) {
-      fetch("https://jsonplaceholder.typicode.com/posts", {
-        method: "POST",
-        body: JSON.stringify({
-          title: values.title,
-          body: values.content,
-          userId: 1,
-        }),
-        headers: {
-          "Content-type": "application/json; charset=UTF-8",
-        },
-      })
-        .then((response) => response.json())
-        .then((json) => setLog(json));
-      notify();
-
-      setSuccess(true);
+      if (toEdit === false) {
+        fetch("https://jsonplaceholder.typicode.com/posts", {
+          method: "POST",
+          body: JSON.stringify({
+            title: values.title,
+            body: values.content,
+            userId: 1,
+          }),
+          headers: {
+            "Content-type": "application/json; charset=UTF-8",
+          },
+        })
+          .then((response) => response.json())
+          .then((json) => setLog(json))
+      } else {
+        fetch("https://jsonplaceholder.typicode.com/posts/1", {
+          method: "PUT",
+          body: JSON.stringify({
+            id: 1,
+            title: values.title,
+            body: values.content,
+            userId: 1,
+          }),
+          headers: {
+            "Content-type": "application/json; charset=UTF-8",
+          },
+        })
+          .then((response) => response.json())
+          .then((json) => console.log(json))
+      }
+      setSuccess(true)
+      notify()
 
       setTimeout(() => {
-        setSuccess(false);
-      }, 1000);
+        setSuccess(false)
+      }, 1000)
     }
-    setSubmitted(true);
-  };
+    setSubmitted(true)
+  }
 
   useEffect(() => {
-    console.log(log);
-  }, [log]);
+    console.log(log)
+  }, [log])
 
   useEffect(() => {
     if (toEdit === true) {
       setValues({
         title: postInfo.title,
         content: postInfo.body,
-      });
+      })
     } else {
       setValues({
         title: "",
         content: "",
-      });
+      })
     }
-  }, [toEdit, postInfo]);
+  }, [toEdit, postInfo])
+
+  useEffect(() => {
+    if (toEdit) {
+      setToastText("edited")
+    } else {
+      setToastText("created")
+    }
+  }, [toEdit])
 
   return (
     <Container>
@@ -146,7 +181,7 @@ const ChangePost = ({ toEdit, postInfo }) => {
         </ButtonsContainer>
       </Form>
     </Container>
-  );
-};
+  )
+}
 
-export default ChangePost;
+export default ChangePost

@@ -1,16 +1,16 @@
-import React, { useState } from "react";
-import "./App.css";
-import { Routes, Route } from "react-router-dom";
-import Navbar from "./components/navbar/navbar";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import React, { useState } from "react"
+import "./App.css"
+import { Routes, Route } from "react-router-dom"
+import Navbar from "./components/navbar/navbar"
+import { ToastContainer } from "react-toastify"
+import "react-toastify/dist/ReactToastify.css"
 
-import Home from "./pages/home/home";
-import ChangePost from "./pages/changePost/changePost";
-import Profile from "./pages/profile";
+import Home from "./pages/home/home"
+import ChangePost from "./pages/changePost/changePost"
+import Profile from "./pages/profile"
 
 function App() {
-  const [postInfo, setPostInfo] = useState();
+  const [postInfo, setPostInfo] = useState()
 
   return (
     <div className="App">
@@ -37,7 +37,7 @@ function App() {
         pauseOnHover
       />
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
