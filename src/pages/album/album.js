@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { Helmet } from "react-helmet"
+import { Oval } from "react-loader-spinner"
 
 import {
   Container,
@@ -12,6 +13,7 @@ import {
 
 const Album = ({ albumInfo }) => {
   const [albumContent, setAlbumContent] = useState([])
+  const [loading, setLoading] = useState(true)
   console.log(albumContent)
 
   useEffect(() => {
@@ -21,6 +23,7 @@ const Album = ({ albumInfo }) => {
       )
         .then((response) => response.json())
         .then((json) => setAlbumContent(json))
+        .then(() => setLoading(false))
     }
   }, [albumInfo])
 
@@ -34,22 +37,35 @@ const Album = ({ albumInfo }) => {
         <title>Profile | SingolarTest</title>
       </Helmet>
       <Container>
-        <AlbumBody>
-          <h2>Album: {albumInfo.title}</h2>
-          <AlbumItemContainer>
-            {albumContent.map((image) => (
-              <AlbumItem
-                href={image.url}
-                target="_blank"
-                rel="noreferrer"
-                key={image.id}
-              >
-                <AlbumImage src={image.thumbnailUrl} alt={image.title} />
-                <AlbumText>{image.title}</AlbumText>
-              </AlbumItem>
-            ))}
-          </AlbumItemContainer>
-        </AlbumBody>
+        {loading ? (
+          <Oval
+            height={80}
+            width={80}
+            color="white"
+            visible={true}
+            ariaLabel="oval-loading"
+            secondaryColor="#fff"
+            strokeWidth={2}
+            strokeWidthSecondary={2}
+          />
+        ) : (
+          <AlbumBody>
+            <h2>Album: {albumInfo.title}</h2>
+            <AlbumItemContainer>
+              {albumContent.map((image) => (
+                <AlbumItem
+                  href={image.url}
+                  target="_blank"
+                  rel="noreferrer"
+                  key={image.id}
+                >
+                  <AlbumImage src={image.thumbnailUrl} alt={image.title} />
+                  <AlbumText>{image.title}</AlbumText>
+                </AlbumItem>
+              ))}
+            </AlbumItemContainer>
+          </AlbumBody>
+        )}
       </Container>
     </>
   )

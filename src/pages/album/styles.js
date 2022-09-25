@@ -6,6 +6,7 @@ export const Container = styled.div`
   align-items: center;
   justify-content: center;
   width: 100%;
+  min-height: 100vh;
 `
 export const AlbumBody = styled.div`
   width: 50%;

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { Helmet } from "react-helmet"
+import { Oval } from "react-loader-spinner"
 
 import {
   Container,
@@ -15,11 +16,13 @@ const Profile = ({ setAlbumInfo }) => {
   const [userInfo, setUserInfo] = useState({})
   const [profileInfoList, setProfileInfoList] = useState([])
   const [profileAlbuns, setProfileAlbuns] = useState([])
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     fetch("https://jsonplaceholder.typicode.com/users/1")
       .then((response) => response.json())
       .then((json) => setUserInfo(json))
+      .then(() => setLoading(false))
       .catch((err) => console.log(err))
   }, [])
 
@@ -78,25 +81,38 @@ const Profile = ({ setAlbumInfo }) => {
         <title>Profile | SingolarTest</title>
       </Helmet>
       <Container>
-        <ProfileBody>
-          <h2>Profile</h2>
-          <ProfileInfo>
-            {profileInfoList.map((item, index) => (
-              <ProfileTextContainer key={index}>
-                <ProfileText>{item.title}:</ProfileText>
-                {item.value}
-              </ProfileTextContainer>
-            ))}
-          </ProfileInfo>
-          <h2>Albuns</h2>
-          <AlbunsContainer>
-            {profileAlbuns.map((item, index) => (
-              <Album to={"/album"} key={index} onClick={() => albumAux(item)}>
-                {item.title}
-              </Album>
-            ))}
-          </AlbunsContainer>
-        </ProfileBody>
+        {loading ? (
+          <Oval
+            height={80}
+            width={80}
+            color="white"
+            visible={true}
+            ariaLabel="oval-loading"
+            secondaryColor="#fff"
+            strokeWidth={2}
+            strokeWidthSecondary={2}
+          />
+        ) : (
+          <ProfileBody>
+            <h2>Profile</h2>
+            <ProfileInfo>
+              {profileInfoList.map((item, index) => (
+                <ProfileTextContainer key={index}>
+                  <ProfileText>{item.title}:</ProfileText>
+                  {item.value}
+                </ProfileTextContainer>
+              ))}
+            </ProfileInfo>
+            <h2>Albuns</h2>
+            <AlbunsContainer>
+              {profileAlbuns.map((item, index) => (
+                <Album to={"/album"} key={index} onClick={() => albumAux(item)}>
+                  {item.title}
+                </Album>
+              ))}
+            </AlbunsContainer>
+          </ProfileBody>
+        )}
       </Container>
     </>
   )
