@@ -81,7 +81,7 @@ const Home = ({ setPostInfo }) => {
               {posts.map((post) => (
                 <Post key={post.id}>
                   <PostHeader>
-                    <Link to={`editPost`}>
+                    <Link to={`editPost`} aria-label="Edit post">
                       <IconContainer onClick={() => postInfoAux(post)}>
                         <FiEdit />
                       </IconContainer>
