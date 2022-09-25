@@ -15,6 +15,10 @@ export const Logo = styled(Link)`
   font-weight: 700;
   color: #000;
   text-decoration: none;
+
+  @media (max-width: 768px) {
+    display: none;
+  }
 `
 export const NavLinks = styled.ul`
   display: flex;

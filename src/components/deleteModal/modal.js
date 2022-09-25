@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { Slide, toast } from "react-toastify";
+import React, { useState, useEffect } from "react"
+import { Slide, toast } from "react-toastify"
 
 import {
   ModalContainer,
@@ -9,10 +9,10 @@ import {
   ModalButtons,
   ModalButtonDelete,
   ModalButtonCancel,
-} from "./style";
+} from "./style"
 
 const DeleteModal = ({ post, modalAux }) => {
-  const [close, setClose] = useState(true);
+  const [close, setClose] = useState(true)
   const notify = () =>
     toast.success("Post deleted! - Check the console", {
       position: "bottom-right",
@@ -24,22 +24,24 @@ const DeleteModal = ({ post, modalAux }) => {
       progress: undefined,
       theme: "dark",
       transition: Slide,
-    });
+    })
 
   useEffect(() => {
-    setClose(false);
-  }, [modalAux]);
+    setClose(false)
+  }, [modalAux])
 
   function deletePost(id) {
     fetch(`https://jsonplaceholder.typicode.com/posts/${id}`, {
       method: "DELETE",
-    }).then((res) => console.log(res));
-    setClose(true);
-    notify();
+    })
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err))
+    setClose(true)
+    notify()
   }
 
   function closeModal() {
-    setClose(true);
+    setClose(true)
   }
 
   return (
@@ -61,7 +63,7 @@ const DeleteModal = ({ post, modalAux }) => {
         </ModalContainer>
       )}
     </>
-  );
-};
+  )
+}
 
-export default DeleteModal;
+export default DeleteModal

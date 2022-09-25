@@ -33,12 +33,14 @@ const Home = ({ setPostInfo }) => {
       .then((res) => res.json())
       .then((data) => setPosts(data))
       .then(() => setLoading(false))
+      .catch((err) => console.log(err))
   }, [])
 
   useEffect(() => {
     fetch("https://jsonplaceholder.typicode.com/users")
       .then((res) => res.json())
       .then((data) => setUsers(data))
+      .catch((err) => console.log(err))
   }, [])
 
   const openModal = (post) => {

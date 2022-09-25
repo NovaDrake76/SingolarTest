@@ -27,9 +27,9 @@ export const Title = styled.h1`
 export const Posts = styled.div`
   display: flex;
   width: 100%;
-  justify-content: space-around;
+  justify-content: center;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 40px;
 `
 
 export const Post = styled.div`
@@ -40,7 +40,7 @@ export const Post = styled.div`
   background-color: #fff;
   padding: 20px;
   border-radius: 4px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
 `
 
 export const PostHeader = styled.div`

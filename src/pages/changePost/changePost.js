@@ -83,6 +83,7 @@ const ChangePost = ({ toEdit, postInfo }) => {
         })
           .then((response) => response.json())
           .then((json) => setLog(json))
+          .catch((err) => console.log(err))
       } else {
         fetch("https://jsonplaceholder.typicode.com/posts/1", {
           method: "PUT",
@@ -98,6 +99,7 @@ const ChangePost = ({ toEdit, postInfo }) => {
         })
           .then((response) => response.json())
           .then((json) => console.log(json))
+          .catch((err) => console.log(err))
       }
       setSuccess(true)
       notify()

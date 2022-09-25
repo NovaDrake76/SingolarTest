@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import React, { useEffect, useState } from "react"
 import { Helmet } from "react-helmet"
 
 import {
@@ -21,40 +21,43 @@ import {
   CommentEmail,
   CommentName,
   CommentTop,
-} from "./style"
+} from "./styles"
 
 const Post = ({ postInfo, setPostInfo }) => {
-  const [authorInfo, setAuthorInfo] = React.useState({})
-  const [relatedPosts, setRelatedPosts] = React.useState([])
-  const [comments, setComments] = React.useState([])
+  const [authorInfo, setAuthorInfo] = useState({})
+  const [relatedPosts, setRelatedPosts] = useState([])
+  const [comments, setComments] = useState([])
 
   const postInfoAux = (post) => {
     setPostInfo(post)
-  }
-
-  if (!postInfo) {
-    window.location.href = "/"
   }
 
   useEffect(() => {
     fetch(`https://jsonplaceholder.typicode.com/users/${postInfo.userId}`)
       .then((res) => res.json())
       .then((data) => setAuthorInfo(data))
+      .catch((err) => console.log(err))
 
     fetch(
       `https://jsonplaceholder.typicode.com/posts?userId=${postInfo.userId}`
     )
       .then((response) => response.json())
       .then((data) => setRelatedPosts(data))
+      .catch((err) => console.log(err))
 
     fetch(`https://jsonplaceholder.typicode.com/posts/${postInfo.id}/comments`)
       .then((response) => response.json())
       .then((data) => setComments(data))
+      .catch((err) => console.log(err))
   }, [postInfo])
 
   useEffect(() => {
     console.log(authorInfo)
   }, [authorInfo])
+
+  if (!postInfo) {
+    window.location.href = "/"
+  }
 
   return (
     <div>

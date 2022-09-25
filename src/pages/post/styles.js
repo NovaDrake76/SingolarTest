@@ -76,8 +76,9 @@ export const RelatedPostsContainer = styled.div`
 export const RelatedPosts = styled.div`
   display: flex;
   overflow-x: scroll;
+
   gap: 10px;
-  padding: 10px;
+  padding: 20px;
 `
 
 export const RelatedPost = styled(Link)`
