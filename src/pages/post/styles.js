@@ -21,6 +21,7 @@ export const PostBody = styled.div`
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   text-align: start;
   gap: 20px;
+  background-color: #fff;
 
   @media (max-width: 768px) {
     width: 100%;

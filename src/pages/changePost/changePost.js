@@ -8,6 +8,7 @@ import {
   InputContainer,
   Form,
   Label,
+  Title,
   Input,
   TextArea,
   Button,
@@ -142,7 +143,7 @@ const ChangePost = ({ toEdit, postInfo }) => {
       <Helmet>
         {toEdit ? <title>Edit Post</title> : <title>Create Post</title>}
       </Helmet>
-      {toEdit ? <h1>Edit Post</h1> : <h1>Create Post</h1>}
+      {toEdit ? <Title>Edit Post</Title> : <Title>Create Post</Title>}
 
       <Form onSubmit={handleSubmit}>
         <InputContainer>

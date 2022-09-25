@@ -4,6 +4,7 @@ import { FiEdit } from "react-icons/fi"
 import { RiDeleteBin5Line } from "react-icons/ri"
 import DeleteModal from "../../components/deleteModal/modal"
 import { Link } from "react-router-dom"
+import { Oval } from "react-loader-spinner"
 
 import {
   Container,
@@ -65,7 +66,16 @@ const Home = ({ setPostInfo }) => {
         <PageContent>
           <Title>Posts</Title>
           {loading ? (
-            <p>Loading...</p>
+            <Oval
+              height={80}
+              width={80}
+              color="white"
+              visible={true}
+              ariaLabel="oval-loading"
+              secondaryColor="#fff"
+              strokeWidth={2}
+              strokeWidthSecondary={2}
+            />
           ) : (
             <Posts>
               {posts.map((post) => (

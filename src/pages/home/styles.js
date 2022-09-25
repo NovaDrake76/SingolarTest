@@ -5,6 +5,7 @@ export const Container = styled.div`
   display: flex;
   justify-content: center;
   width: 100%;
+  min-height: 100vh;
 `
 
 export const PageContent = styled.div`
@@ -20,7 +21,7 @@ export const PageContent = styled.div`
 export const Title = styled.h1`
   font-size: 2rem;
   font-weight: 400;
-  color: #333;
+  color: white;
   margin-bottom: 40px;
 `
 

@@ -1,10 +1,10 @@
 import styled from "styled-components"
 
 export const Container = styled.div`
+  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   padding: 0 20px;
   gap: 5px;
 `
@@ -20,6 +20,12 @@ export const Form = styled.form`
   padding: 20px;
   width: 400px;
   gap: 20px;
+`
+
+export const Title = styled.h2`
+  font-size: 2rem;
+  font-weight: 400;
+  color: white;
 `
 
 export const Label = styled.label`
