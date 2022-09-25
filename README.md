@@ -6,6 +6,7 @@ https://singolartest.netlify.app
 Esta aplicação consome a API https://jsonplaceholder.typicode.com/
 
 Feita com Styled-Components.
+Testes de performance realizados usando LightHouse. 
 
 Funcionalidades:  
 ✅ Realizar a listagem de posts  
