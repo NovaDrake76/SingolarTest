@@ -43,14 +43,6 @@ const ChangePost = ({ toEdit, postInfo }) => {
     window.location.href = "/"
   }
 
-  useEffect(() => {
-    window.onbeforeunload = function () {
-      if (success === false) {
-        return true
-      }
-    }
-  }, [success])
-
   const handleTitleChange = (event) => {
     event.persist()
     setValues((values) => ({
