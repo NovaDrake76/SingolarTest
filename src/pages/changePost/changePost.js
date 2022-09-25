@@ -105,7 +105,7 @@ const ChangePost = ({ toEdit, postInfo }) => {
       notify()
 
       setTimeout(() => {
-        window.location.href = "/"
+        setSuccess(false)
       }, 1000)
     }
     setSubmitted(true)
@@ -174,11 +174,10 @@ const ChangePost = ({ toEdit, postInfo }) => {
           )}
         </InputContainer>
         <ButtonsContainer>
-          {toEdit ? (
-            <Link to={"/"}>
-              <Button>Cancel</Button>
-            </Link>
-          ) : null}
+          <Link to={"/"}>
+            <Button>Go Back</Button>
+          </Link>
+
           <Button type="submit" value="Submit" disabled={success}>
             {toEdit ? "Edit Post" : "Create Post"}
           </Button>
